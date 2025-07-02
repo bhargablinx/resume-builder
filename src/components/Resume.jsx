@@ -17,7 +17,7 @@ export const Resume = () => {
             <SectionHeading sectionName="SKILLS">
                 <ul className="text-[11px] space-y-0.5">
                     <li>
-                        <spam className="font-bold">Web Technologies</spam>:
+                        <span className="font-bold">Web Technologies</span>:
                         HTML, CSS, JavaScript, TailwindCSS, ReactJS, Redux
                     </li>
                     <li>
