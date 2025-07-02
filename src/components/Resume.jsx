@@ -113,30 +113,6 @@ export const Resume = () => {
                         </li>
                     </ul>
                 </JobSection>
-                <JobSection
-                    companyName="Microsoft"
-                    startData="Nov, 2019"
-                    endData="Sept, 2024"
-                    jobRole="Jr. Software Engineer"
-                >
-                    <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1">
-                        <li>
-                            Developed and managed web applications using
-                            ReactJS, Redux, RTK Query, and TypeScript.
-                        </li>
-                        <li>
-                            Migrated the front-end code base front CRA to VITE,
-                            helping the productivity of developers by reducing
-                            development server start time by 20% and production
-                            by 8%
-                        </li>
-                        <li>
-                            Streamlined and restructured Redux store, optimizing
-                            application's state management; reduced load time by
-                            25% and enhanced overall performance.
-                        </li>
-                    </ul>
-                </JobSection>
             </SectionHeading>
         </div>
     );
