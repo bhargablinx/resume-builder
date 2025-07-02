@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    /* Base Colors */
+    --color-dark: rgb(29, 22, 22); /* Main text or dark background */
+    --color-light: rgb(238, 238, 238); /* Main background or light text */
+
+    /* Accent Colors */
+    --color-dark-red: rgb(142, 22, 22); /* Primary action, strong emphasis */
+    --color-light-red: rgb(216, 64, 64); /* Secondary accent or warning */
+
+    /* Hover / Active Variants */
+    --color-dark-red-hover: rgb(120, 18, 18);
+    --color-light-red-hover: rgb(200, 50, 50);
+
+    /* Neutrals */
+    --color-gray: rgb(160, 160, 160); /* Subtle borders, secondary text */
+
+    /* Semantic Naming (Optional Aliases) */
+    --color-bg: var(--color-light);
+    --color-text: var(--color-dark);
+    --color-primary: var(--color-dark-red);
+    --color-primary-hover: var(--color-dark-red-hover);
+    --color-accent: var(--color-light-red);
+    --color-accent-hover: var(--color-light-red-hover);
+}
