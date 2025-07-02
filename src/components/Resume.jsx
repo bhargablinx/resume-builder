@@ -27,25 +27,66 @@ export const Resume = () => {
                 </ul>
             </SectionHeading>
             <SectionHeading sectionName="PROJECTS">
-                <div className="text-[14px] font-bold">Resume Builder</div>
-                <div className="text-[11px]">
-                    A résumé generator built with React. Dynamic and fully
-                    editable resumé generator that allows users to:
-                </div>
-                <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1">
-                    <li>
-                        Input and manage general information, education, and
-                        work experience
-                    </li>
-                    <li>
-                        Edit and resubmit data with prefilled input fields for
-                        seamless updates
-                    </li>
-                    <li>
-                        View a live preview of the CV using conditional
-                        rendering and form state management
-                    </li>
-                </ul>
+                <ProjectSection projectName="Demo Project 1">
+                    <div className="text-[11px]">
+                        A résumé generator built with React. Dynamic and fully
+                        editable resumé generator that allows users to:
+                    </div>
+                    <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1">
+                        <li>
+                            Input and manage general information, education, and
+                            work experience
+                        </li>
+                        <li>
+                            Edit and resubmit data with prefilled input fields
+                            for seamless updates
+                        </li>
+                        <li>
+                            View a live preview of the CV using conditional
+                            rendering and form state management
+                        </li>
+                    </ul>
+                </ProjectSection>
+                <ProjectSection projectName="Demo Project 2">
+                    <div className="text-[11px]">
+                        A résumé generator built with React. Dynamic and fully
+                        editable resumé generator that allows users to:
+                    </div>
+                    <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1">
+                        <li>
+                            Input and manage general information, education, and
+                            work experience
+                        </li>
+                        <li>
+                            Edit and resubmit data with prefilled input fields
+                            for seamless updates
+                        </li>
+                        <li>
+                            View a live preview of the CV using conditional
+                            rendering and form state management
+                        </li>
+                    </ul>
+                </ProjectSection>
+                <ProjectSection projectName="Demo Project 3">
+                    <div className="text-[11px]">
+                        A résumé generator built with React. Dynamic and fully
+                        editable resumé generator that allows users to:
+                    </div>
+                    <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1">
+                        <li>
+                            Input and manage general information, education, and
+                            work experience
+                        </li>
+                        <li>
+                            Edit and resubmit data with prefilled input fields
+                            for seamless updates
+                        </li>
+                        <li>
+                            View a live preview of the CV using conditional
+                            rendering and form state management
+                        </li>
+                    </ul>
+                </ProjectSection>
             </SectionHeading>
         </div>
     );
@@ -56,6 +97,15 @@ function SectionHeading({ children, sectionName }) {
         <div>
             <div className="text-[16px] font-bold mb-2">{sectionName}</div>
             <hr className="mb-1" />
+            {children}
+        </div>
+    );
+}
+
+function ProjectSection({ children, projectName }) {
+    return (
+        <div className="my-2">
+            <div className="text-[14px] font-bold">{projectName}</div>
             {children}
         </div>
     );
