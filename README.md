@@ -1,12 +1,49 @@
-# React + Vite
+Here’s a simple and clean **README** for your resume builder project, with a "coming soon" message:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## 🧾 Resume Builder
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A clean and minimal **Resume Builder** web app built with **React** and **Tailwind CSS**.
 
-## Expanding the ESLint configuration
+### 🚧 Coming Soon
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+-   Responsive A4-style layout for clean printable resumes
+-   Tailwind-based styling for simplicity and speed
+-   Component-first structure to allow PDF export and editing support late
+-   PDF export support
+-   Inline editing experience
+-   Template switching
+-   Dark mode and more styling options
+
+---
+
+### 🛠 Tech Stack
+
+-   **React** (Functional Components, JSX)
+-   **Tailwind CSS**
+-   ⚙️ Planned integrations: `html2pdf`, `zustand` or `redux`, custom themes
+
+---
+
+### 📂 Folder Structure (Preview)
+
+```
+/src
+  ├── components/
+  │   └── Resume.jsx
+  └── App.jsx
+```
+
+---
+
+### 🔧 Setup Instructions
+
+```bash
+npm install
+npm run dev
+```
+
+---
+
+Feel free to tweak the wording or ask if you want a markdown version or deployment instructions!
