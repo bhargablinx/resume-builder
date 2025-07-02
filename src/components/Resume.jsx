@@ -114,6 +114,18 @@ export const Resume = () => {
                     </ul>
                 </JobSection>
             </SectionHeading>
+            <SectionHeading sectionName="Education">
+                <EducationSection
+                    institute="Central Institute of Technology, Kokrajhar"
+                    degree="Bachelor of Technology (B.Tech) - Computer Science"
+                    startDate="Aug, 2021"
+                    endDate="May, 2025"
+                >
+                    <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1">
+                        <li>CGPA: 8.5 </li>
+                    </ul>
+                </EducationSection>
+            </SectionHeading>
         </div>
     );
 };
@@ -147,6 +159,21 @@ function JobSection({ children, companyName, startData, endData, jobRole }) {
                 </div>
             </div>
             <div className="text-[11px] font-semibold">{jobRole}</div>
+            {children}
+        </div>
+    );
+}
+
+function EducationSection({ institute, degree, startDate, endDate, children }) {
+    return (
+        <div className="my-2">
+            <div className="flex justify-between items-center">
+                <div className="text-[14px] font-bold">{institute}</div>
+                <div className="text-gray-600 text-[11px] italic tracking-wider">
+                    {startDate} - {endDate}
+                </div>
+            </div>
+            <div className="text-[11px] font-semibold">{degree}</div>
             {children}
         </div>
     );
