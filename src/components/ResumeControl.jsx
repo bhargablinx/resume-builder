@@ -16,9 +16,107 @@ export const ResumeControl = () => {
             </div>
             <PersonalSection />
             <ProjectSection />
+            <ExperienceSection />
         </div>
     );
 };
+
+function ExperienceSection() {
+    const [experienceList, setExperienceList] = useState([1]);
+
+    const addExperience = () => {
+        setExperienceList((prev) => [...prev, prev.length + 1]);
+    };
+
+    return (
+        <div className="bg-white w-full max-w-[500px] p-6 rounded-xl border border-gray-300 shadow-sm space-y-6 transition hover:shadow-lg">
+            <div className="flex justify-between items-center">
+                <h2 className="text-2xl font-bold text-dark-red flex items-center">
+                    <i className="fa-solid fa-briefcase mr-3 text-lg"></i>
+                    EXPERIENCE
+                </h2>
+                <button
+                    onClick={addExperience}
+                    className="text-dark-red hover:text-red-700 text-xl transition-all"
+                    title="Add Experience"
+                >
+                    <i className="fa-solid fa-plus"></i>
+                </button>
+            </div>
+
+            {experienceList.map((expIndex) => (
+                <div key={expIndex} className="space-y-4 border-t pt-6">
+                    {/* Company Name */}
+                    <div className="flex flex-col space-y-1">
+                        <label className="text-sm font-medium text-gray-700">
+                            Company Name
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Enter company name..."
+                            className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
+                        />
+                    </div>
+
+                    {/* Start and End Dates */}
+                    <div className="flex gap-4">
+                        <div className="flex flex-col space-y-1 w-1/2">
+                            <label className="text-sm font-medium text-gray-700">
+                                Start Date (Month, Year)
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="e.g. Jan, 2021"
+                                className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
+                            />
+                        </div>
+                        <div className="flex flex-col space-y-1 w-1/2">
+                            <label className="text-sm font-medium text-gray-700">
+                                End Date (Month, Year)
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="e.g. Jun, 2023"
+                                className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Job Role */}
+                    <div className="flex flex-col space-y-1">
+                        <label className="text-sm font-medium text-gray-700">
+                            Job Role
+                        </label>
+                        <input
+                            type="text"
+                            placeholder="Enter job role..."
+                            className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
+                        />
+                    </div>
+
+                    {/* Bullet Points */}
+                    <div className="flex flex-col space-y-3">
+                        {[1, 2, 3].map((point) => (
+                            <div
+                                key={point}
+                                className="flex flex-col space-y-1"
+                            >
+                                <label className="text-sm font-medium text-gray-700">
+                                    Point {point}
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="Enter key responsibility or achievement..."
+                                    className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
+                                />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+}
 
 function ProjectSection() {
     const [isHidden, setIsHidden] = useState(true);
