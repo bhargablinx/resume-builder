@@ -25,7 +25,9 @@ function ExperienceSection() {
     const [experienceList, setExperienceList] = useState([1]);
 
     const addExperience = () => {
-        setExperienceList((prev) => [...prev, prev.length + 1]);
+        if (experienceList.length < 2) {
+            setExperienceList((prev) => [...prev, prev.length + 1]);
+        }
     };
 
     return (
@@ -35,13 +37,15 @@ function ExperienceSection() {
                     <i className="fa-solid fa-briefcase mr-3 text-lg"></i>
                     EXPERIENCE
                 </h2>
-                <button
-                    onClick={addExperience}
-                    className="text-dark-red hover:text-red-700 text-xl transition-all"
-                    title="Add Experience"
-                >
-                    <i className="fa-solid fa-plus"></i>
-                </button>
+                {experienceList.length < 2 && (
+                    <button
+                        onClick={addExperience}
+                        className="text-dark-red hover:text-red-700 text-xl transition-all"
+                        title="Add Experience"
+                    >
+                        <i className="fa-solid fa-plus"></i>
+                    </button>
+                )}
             </div>
 
             {experienceList.map((expIndex) => (
