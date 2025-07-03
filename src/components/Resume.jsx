@@ -75,28 +75,22 @@ export const Resume = () => {
 
             {/* EXPERIENCE */}
             <SectionHeading sectionName="EXPERIENCE">
-                <JobSection
-                    companyName="Microsoft"
-                    startDate="Nov, 2019"
-                    endDate="Sept, 2024"
-                    jobRole="Jr. Software Engineer"
-                >
-                    <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
-                        <li>
-                            Developed and managed web applications using
-                            ReactJS, Redux, RTK Query, and TypeScript.
-                        </li>
-                        <li>
-                            Migrated the front-end codebase from CRA to Vite,
-                            improving developer productivity and reducing build
-                            time.
-                        </li>
-                        <li>
-                            Streamlined Redux store structure, reducing load
-                            time by 25% and improving performance.
-                        </li>
-                    </ul>
-                </JobSection>
+                {experience.map((experience) => {
+                    return (
+                        <JobSection
+                            companyName={experience.companyName}
+                            startDate={experience.startDate}
+                            endDate={experience.endDate}
+                            jobRole={experience.jobRole}
+                        >
+                            <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
+                                {experience.bulletPoints.map((point) => (
+                                    <li>{point}</li>
+                                ))}
+                            </ul>
+                        </JobSection>
+                    );
+                })}
             </SectionHeading>
 
             {/* EDUCATION */}
