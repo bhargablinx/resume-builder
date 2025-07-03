@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export const ResumeControl = () => {
     return (
         <div className="flex-1 flex flex-col items-center gap-[30px]">
@@ -13,9 +15,47 @@ export const ResumeControl = () => {
                 </button>
             </div>
             <PersonalSection />
+            <ProjectSection />
         </div>
     );
 };
+
+function ProjectSection() {
+    const [isHidden, setIsHidden] = useState(true);
+
+    const toggleAccordion = () => {
+        setIsHidden((prev) => !prev);
+    };
+    return (
+        <div className="bg-white w-full max-w-[500px] p-6 rounded-xl border border-gray-300 shadow-sm space-y-3 transition hover:shadow-lg">
+            <div
+                className="flex justify-between items-center cursor-pointer"
+                onClick={toggleAccordion}
+            >
+                <h2 className="text-2xl font-bold text-dark-red">
+                    <i class="fa-solid fa-folder-tree mr-3 text-lg"></i>PROJECTS
+                </h2>
+                <span
+                    className={`text-gray-400 transform transition-transform duration-300 ${
+                        isHidden ? "" : "rotate-180"
+                    }`}
+                >
+                    &#9660;
+                </span>
+            </div>
+
+            <div
+                className={`overflow-hidden transition-[max-height] duration-500 ease-in-out ${
+                    isHidden ? "max-h-0" : "max-h-40"
+                }`}
+            >
+                <div>Project 1</div>
+                <div>Project 2</div>
+                <div>Project 3</div>
+            </div>
+        </div>
+    );
+}
 
 function PersonalSection() {
     return (
