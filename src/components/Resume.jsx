@@ -6,7 +6,7 @@ export const Resume = () => {
     );
 
     return (
-        <div className="border sticky top-3 border-gray-300 shadow-2xl w-[650px] min-h-[920px] h-fit py-6 px-10 flex flex-col gap-5 bg-white">
+        <div className="w-[650px] sticky top-0 max-h-screen overflow-y-auto border border-gray-300 shadow-2xl py-6 px-10 flex flex-col gap-5 bg-white">
             {/* Header */}
             <header className="text-center">
                 <div className="text-[28px] font-bold">{personalInfo.name}</div>

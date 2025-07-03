@@ -25,3 +25,24 @@
     --color-accent: var(--color-light-red);
     --color-accent-hover: var(--color-light-red-hover);
 }
+
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: #8e1616;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #a52222;
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #8e1616 #f1f1f1;
+}
