@@ -369,6 +369,21 @@ function PersonalSection() {
                 />
             </div>
 
+            {/* Address */}
+            <div className="flex flex-col space-y-1">
+                <label
+                    htmlFor="address"
+                    className="text-sm font-medium text-gray-700"
+                >
+                    Address
+                </label>
+                <input
+                    id="address"
+                    placeholder="Enter your address..."
+                    className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all resize-none"
+                />
+            </div>
+
             {/* Email */}
             <div className="flex flex-col space-y-1">
                 <label
@@ -385,34 +400,35 @@ function PersonalSection() {
                 />
             </div>
 
-            {/* Phone Number */}
+            {/* GitHub link */}
             <div className="flex flex-col space-y-1">
                 <label
-                    htmlFor="phone"
+                    htmlFor="github"
                     className="text-sm font-medium text-gray-700"
                 >
-                    Phone Number
+                    GitHub Link
                 </label>
                 <input
-                    id="phone"
-                    type="tel"
-                    placeholder="Enter phone number..."
+                    id="github"
+                    type="url"
+                    placeholder="https://github.com/username"
                     className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
                 />
             </div>
 
-            {/* Address */}
+            {/* LinkedIn link */}
             <div className="flex flex-col space-y-1">
                 <label
-                    htmlFor="address"
+                    htmlFor="linkedin"
                     className="text-sm font-medium text-gray-700"
                 >
-                    Address
+                    LinkedIn Link
                 </label>
                 <input
-                    id="address"
-                    placeholder="Enter your address..."
-                    className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all resize-none"
+                    id="linkedin"
+                    type="url"
+                    placeholder="https://www.linkedin.com/in/username"
+                    className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
                 />
             </div>
         </div>
