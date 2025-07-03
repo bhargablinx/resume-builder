@@ -4,6 +4,7 @@ import {
     changePersonalInfo,
     changeSkills,
     changeProjects,
+    changeExperience,
 } from "../slices/resumeSlice";
 
 export const ResumeControl = () => {
@@ -26,7 +27,7 @@ export const ResumeControl = () => {
             <PersonalSection personalInfo={personalInfo} />
             <SkillSection skill={skill} />
             <ProjectSection projects={projects} />
-            <ExperienceSection />
+            <ExperienceSection experience={experience} />
             <EducationSection />
         </div>
     );
@@ -252,14 +253,43 @@ const EducationSection = () => {
     );
 };
 
-function ExperienceSection() {
-    const [experienceList, setExperienceList] = useState([1]);
+function ExperienceSection({ experience }) {
+    const [experienceList, setExperienceList] = useState(experience);
+    const dispatch = useDispatch();
+
+    const handleChange = (index, field, value) => {
+        const updated = experienceList.map((e, i) =>
+            i === index ? { ...e, [field]: value } : e
+        );
+        setExperienceList(updated);
+    };
+
+    const handleBulletPointChange = (value, expIndex, bulletIndex) => {
+        const updated = experienceList.map((experience, i) => {
+            if (i === expIndex) {
+                const updatedBulletPoints = [...experience.bulletPoints];
+                updatedBulletPoints[bulletIndex] = value;
+
+                return {
+                    ...experience,
+                    bulletPoints: updatedBulletPoints,
+                };
+            }
+            return experience;
+        });
+
+        setExperienceList(updated);
+    };
 
     const addExperience = () => {
         if (experienceList.length < 2) {
             setExperienceList((prev) => [...prev, prev.length + 1]);
         }
     };
+
+    useEffect(() => {
+        dispatch(changeExperience(experienceList));
+    }, [experienceList]);
 
     return (
         <div className="bg-white w-full max-w-[500px] p-6 rounded-xl border border-gray-300 shadow-sm space-y-6 transition hover:shadow-lg">
@@ -279,7 +309,7 @@ function ExperienceSection() {
                 )}
             </div>
 
-            {experienceList.map((expIndex) => (
+            {experienceList.map((item, expIndex) => (
                 <div key={expIndex} className="space-y-4 border-t pt-6">
                     {/* Company Name */}
                     <div className="flex flex-col space-y-1">
@@ -287,6 +317,14 @@ function ExperienceSection() {
                             Company Name
                         </label>
                         <input
+                            value={item.companyName}
+                            onChange={(e) =>
+                                handleChange(
+                                    expIndex,
+                                    "companyName",
+                                    e.target.value
+                                )
+                            }
                             type="text"
                             placeholder="Enter company name..."
                             className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
@@ -300,6 +338,14 @@ function ExperienceSection() {
                                 Start Date (Month, Year)
                             </label>
                             <input
+                                value={item.startDate}
+                                onChange={(e) =>
+                                    handleChange(
+                                        expIndex,
+                                        "startDate",
+                                        e.target.value
+                                    )
+                                }
                                 type="text"
                                 placeholder="e.g. Jan, 2021"
                                 className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
@@ -310,6 +356,14 @@ function ExperienceSection() {
                                 End Date (Month, Year)
                             </label>
                             <input
+                                value={item.endDate}
+                                onChange={(e) =>
+                                    handleChange(
+                                        expIndex,
+                                        "endDate",
+                                        e.target.value
+                                    )
+                                }
                                 type="text"
                                 placeholder="e.g. Jun, 2023"
                                 className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
@@ -323,6 +377,14 @@ function ExperienceSection() {
                             Job Role
                         </label>
                         <input
+                            value={item.jobRole}
+                            onChange={(e) =>
+                                handleChange(
+                                    expIndex,
+                                    "jobRole",
+                                    e.target.value
+                                )
+                            }
                             type="text"
                             placeholder="Enter job role..."
                             className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
@@ -340,6 +402,14 @@ function ExperienceSection() {
                                     Point {point}
                                 </label>
                                 <input
+                                    value={item.bulletPoints[point - 1]}
+                                    onChange={(e) =>
+                                        handleBulletPointChange(
+                                            e.target.value,
+                                            expIndex,
+                                            point - 1
+                                        )
+                                    }
                                     type="text"
                                     placeholder="Enter key responsibility or achievement..."
                                     className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
