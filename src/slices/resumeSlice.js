@@ -76,6 +76,9 @@ const resumeSlice = createSlice({
         changePersonalInfo: (state, action) => {
             state.personalInfo.name = action.payload.name;
             state.personalInfo.address = action.payload.address;
+            state.personalInfo.email = action.payload.email;
+            state.personalInfo.githubLink = action.payload.github;
+            state.personalInfo.linkedInLink = action.payload.linkedIn;
         },
         changeSkills: (state, action) => {},
         changeProjects: (state, action) => {},
