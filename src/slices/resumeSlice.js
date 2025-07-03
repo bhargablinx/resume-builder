@@ -10,11 +10,16 @@ const resumeSlice = createSlice({
             githubLink: "https://github.com/bhargablinx",
             linkedInLink: "https://www.linkedin.com/in/bhargabb/",
         },
-        skill: {
-            "Web Technologies":
-                "HTML, CSS, JavaScript, TailwindCSS, ReactJS, Redux",
-            "Tools & Platform": "Git, GitHub, Linux",
-        },
+        skill: [
+            {
+                categoryName: "Web Technologies",
+                skills: "HTML, CSS, JavaScript, TailwindCSS, ReactJS, Redux",
+            },
+            {
+                categoryName: "Tools & Platform",
+                skills: "Git, GitHub, Linux",
+            },
+        ],
         projects: [
             {
                 projectName: "Demo Project 1",

@@ -43,9 +43,12 @@ export const Resume = () => {
             {/* SKILLS */}
             <SectionHeading sectionName="SKILLS">
                 <ul className="text-[11px] space-y-0.5 leading-tight tracking-tight">
-                    {Object.entries(skill).map(([key, value]) => (
-                        <li key={key}>
-                            <span className="font-bold">{key}</span>: {value}
+                    {skill.map((obj) => (
+                        <li key={obj.categoryName}>
+                            <span className="font-semibold">
+                                {obj.categoryName}
+                            </span>
+                            : {obj.skills}
                         </li>
                     ))}
                 </ul>
