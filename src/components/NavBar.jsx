@@ -16,9 +16,9 @@ export const NavBar = () => {
                 <div className="lg:hidden">
                     <button onClick={() => setIsOpen(!isOpen)}>
                         {isOpen ? (
-                            <i class="fa-solid fa-xmark text-dark"></i>
+                            <i className="fa-solid fa-xmark text-dark"></i>
                         ) : (
-                            <i class="fa-solid fa-bars"></i>
+                            <i className="fa-solid fa-bars"></i>
                         )}
                     </button>
                 </div>
