@@ -74,6 +74,7 @@ const resumeSlice = createSlice({
     },
     reducers: {
         changePersonalInfo: (state, action) => {},
+        changeSkills: (state, action) => {},
         changeProjects: (state, action) => {},
         changeExperience: (state, action) => {},
         changeEducation: (state, action) => {},
@@ -82,6 +83,7 @@ const resumeSlice = createSlice({
 
 export const {
     changePersonalInfo,
+    changeSkills,
     changeProjects,
     changeExperience,
     changeEducation,
