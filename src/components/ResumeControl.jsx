@@ -15,6 +15,7 @@ export const ResumeControl = () => {
                 </button>
             </div>
             <PersonalSection />
+            <SkillSection />
             <ProjectSection />
             <ExperienceSection />
             <EducationSection />
@@ -22,7 +23,74 @@ export const ResumeControl = () => {
     );
 };
 
-export const EducationSection = () => {
+function SkillSection() {
+    return (
+        <div className="bg-white w-full max-w-[500px] p-6 rounded-xl border border-gray-300 shadow-sm space-y-4">
+            <h2 className="text-xl font-bold text-dark-red">
+                <i className="fa-solid fa-tools mr-2 text-lg" />
+                Skills
+            </h2>
+
+            {/* Skill Category 1 */}
+            <div className="flex flex-col space-y-1">
+                <label
+                    htmlFor="skill-category-1"
+                    className="text-sm font-medium text-gray-700"
+                >
+                    Category 1 (e.g. Web Technologies)
+                </label>
+                <input
+                    id="skill-category-1"
+                    type="text"
+                    placeholder="Enter category name..."
+                    className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent"
+                />
+                <label
+                    htmlFor="skill-values-1"
+                    className="text-sm font-medium text-gray-700 mt-2"
+                >
+                    Skills (comma separated)
+                </label>
+                <input
+                    id="skill-values-1"
+                    type="text"
+                    placeholder="e.g. HTML, CSS, JavaScript"
+                    className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent"
+                />
+            </div>
+
+            {/* Skill Category 2 */}
+            <div className="flex flex-col space-y-1">
+                <label
+                    htmlFor="skill-category-2"
+                    className="text-sm font-medium text-gray-700"
+                >
+                    Category 2 (e.g. Tools & Platforms)
+                </label>
+                <input
+                    id="skill-category-2"
+                    type="text"
+                    placeholder="Enter category name..."
+                    className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent"
+                />
+                <label
+                    htmlFor="skill-values-2"
+                    className="text-sm font-medium text-gray-700 mt-2"
+                >
+                    Skills (comma separated)
+                </label>
+                <input
+                    id="skill-values-2"
+                    type="text"
+                    placeholder="e.g. Git, GitHub, Linux"
+                    className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent"
+                />
+            </div>
+        </div>
+    );
+}
+
+const EducationSection = () => {
     const [educationList, setEducationList] = useState([1]);
 
     const addEducation = () => {
