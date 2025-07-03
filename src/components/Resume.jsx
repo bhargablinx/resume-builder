@@ -57,7 +57,7 @@ export const Resume = () => {
 
             {/* PROJECTS */}
             <SectionHeading sectionName="PROJECTS">
-                <ProjectSection projectName="Demo Project 1">
+                <ProjectSection projectName={"Demo Project 1"}>
                     <div className="text-[11px] leading-tight tracking-tight">
                         A résumé generator built with React. Dynamic and fully
                         editable résumé generator that allows users to:
