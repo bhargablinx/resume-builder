@@ -1,6 +1,6 @@
 export const Resume = () => {
     return (
-        <div className="border border-gray-300 shadow-2xl w-[595px] min-h-[842px] h-fit py-4 px-8 flex flex-col gap-4 bg-white">
+        <div className="border sticky top-3 border-gray-300 shadow-2xl w-[595px] min-h-[842px] h-fit py-4 px-8 flex flex-col gap-4 bg-white">
             {/* Header */}
             <header className="text-center">
                 <div className="text-[26px] font-bold">BHARGAB BHUYAN</div>
