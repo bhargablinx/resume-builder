@@ -86,7 +86,7 @@ const resumeSlice = createSlice({
             state.personalInfo.linkedInLink = action.payload.linkedIn;
         },
         changeSkills: (state, action) => {
-            state.skill = action.payload; // payload should be an array of skill objects
+            state.skill = action.payload;
         },
         changeProjects: (state, action) => {},
         changeExperience: (state, action) => {},
