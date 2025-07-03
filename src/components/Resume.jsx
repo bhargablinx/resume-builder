@@ -6,11 +6,11 @@ export const Resume = () => {
     );
 
     return (
-        <div className="border sticky top-3 border-gray-300 shadow-2xl w-[595px] min-h-[842px] h-fit py-4 px-8 flex flex-col gap-4 bg-white">
+        <div className="border sticky top-3 border-gray-300 shadow-2xl w-[650px] min-h-[920px] h-fit py-6 px-10 flex flex-col gap-5 bg-white">
             {/* Header */}
             <header className="text-center">
-                <div className="text-[26px] font-bold">{personalInfo.name}</div>
-                <ul className="flex justify-center gap-2 text-[11px] list-none text-gray-800">
+                <div className="text-[28px] font-bold">{personalInfo.name}</div>
+                <ul className="flex justify-center gap-2 text-[11px] list-none text-gray-800 flex-wrap">
                     <li>{personalInfo.address}</li>
                     <li>&#8226;</li>
                     <li>{personalInfo.email}</li>
@@ -55,96 +55,95 @@ export const Resume = () => {
 
             {/* PROJECTS */}
             <SectionHeading sectionName="PROJECTS">
-                {projects.map((project) => {
-                    return (
-                        <ProjectSection projectName={project.projectName}>
-                            <div className="text-[11px] leading-tight tracking-tight">
-                                {project.description}
-                            </div>
-                            <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
-                                {project.bulletPoints.map((point) => (
-                                    <li>{point}</li>
-                                ))}
-                            </ul>
-                        </ProjectSection>
-                    );
-                })}
+                {projects.map((project, index) => (
+                    <ProjectSection
+                        key={index}
+                        projectName={project.projectName}
+                    >
+                        <div className="text-[11px] leading-tight tracking-tight">
+                            {project.description}
+                        </div>
+                        <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
+                            {project.bulletPoints.map((point, idx) => (
+                                <li key={idx}>{point}</li>
+                            ))}
+                        </ul>
+                    </ProjectSection>
+                ))}
             </SectionHeading>
 
             {/* EXPERIENCE */}
             <SectionHeading sectionName="EXPERIENCE">
-                {experience.map((experience) => {
-                    return (
-                        <JobSection
-                            companyName={experience.companyName}
-                            startDate={experience.startDate}
-                            endDate={experience.endDate}
-                            jobRole={experience.jobRole}
-                        >
-                            <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
-                                {experience.bulletPoints.map((point) => (
-                                    <li>{point}</li>
-                                ))}
-                            </ul>
-                        </JobSection>
-                    );
-                })}
+                {experience.map((exp, index) => (
+                    <JobSection
+                        key={index}
+                        companyName={exp.companyName}
+                        startDate={exp.startDate}
+                        endDate={exp.endDate}
+                        jobRole={exp.jobRole}
+                    >
+                        <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
+                            {exp.bulletPoints.map((point, idx) => (
+                                <li key={idx}>{point}</li>
+                            ))}
+                        </ul>
+                    </JobSection>
+                ))}
             </SectionHeading>
 
             {/* EDUCATION */}
             <SectionHeading sectionName="EDUCATION">
-                {education.map((education) => {
-                    return (
-                        <EducationSection
-                            institute={education.institute}
-                            degree={education.degree}
-                            startDate={education.startDate}
-                            endDate={education.endDate}
-                        >
-                            <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
-                                <li>CGPA: {education.cgpa}</li>
-                                <li>{education.otherInfo}</li>
-                            </ul>
-                        </EducationSection>
-                    );
-                })}
+                {education.map((edu, index) => (
+                    <EducationSection
+                        key={index}
+                        institute={edu.institute}
+                        degree={edu.degree}
+                        startDate={edu.startDate}
+                        endDate={edu.endDate}
+                    >
+                        <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
+                            <li>CGPA: {edu.cgpa}</li>
+                            <li>{edu.otherInfo}</li>
+                        </ul>
+                    </EducationSection>
+                ))}
             </SectionHeading>
         </div>
     );
 };
 
-// Shared section heading
+// Shared Section Heading
 function SectionHeading({ children, sectionName }) {
     return (
         <section aria-labelledby={sectionName.toLowerCase()}>
             <h2
                 id={sectionName.toLowerCase()}
-                className="text-[16px] font-bold mb-2"
+                className="text-[18px] font-bold mb-2 tracking-tight"
             >
                 {sectionName}
             </h2>
-            <hr className="mb-1" />
+            <hr className="mb-1 border-gray-400" />
             {children}
         </section>
     );
 }
 
-// Project section
+// Project Section
 function ProjectSection({ children, projectName }) {
     return (
         <div className="my-2">
-            <div className="text-[14px] font-bold">{projectName}</div>
+            <div className="text-[15px] font-bold">{projectName}</div>
             {children}
         </div>
     );
 }
 
-// Job section
+// Experience Section
 function JobSection({ children, companyName, startDate, endDate, jobRole }) {
     return (
         <div className="my-2">
             <div className="flex justify-between items-center">
-                <div className="text-[14px] font-bold">{companyName}</div>
+                <div className="text-[15px] font-bold">{companyName}</div>
                 <div className="text-gray-600 text-[11px] italic tracking-wider">
                     {startDate} - {endDate}
                 </div>
@@ -155,12 +154,12 @@ function JobSection({ children, companyName, startDate, endDate, jobRole }) {
     );
 }
 
-// Education section
+// Education Section
 function EducationSection({ institute, degree, startDate, endDate, children }) {
     return (
         <div className="my-2">
             <div className="flex justify-between items-center">
-                <div className="text-[14px] font-bold">{institute}</div>
+                <div className="text-[15px] font-bold">{institute}</div>
                 <div className="text-gray-600 text-[11px] italic tracking-wider">
                     {startDate} - {endDate}
                 </div>
