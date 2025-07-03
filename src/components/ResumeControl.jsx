@@ -21,7 +21,7 @@ export const ResumeControl = () => {
             </div>
             <PersonalSection personalInfo={personalInfo} />
             <SkillSection skill={skill} />
-            <ProjectSection />
+            <ProjectSection projects={projects} />
             <ExperienceSection />
             <EducationSection />
         </div>
@@ -349,8 +349,10 @@ function ExperienceSection() {
     );
 }
 
-const ProjectSection = () => {
-    const [projectList, setProjectList] = useState([1]);
+const ProjectSection = ({ projects }) => {
+    const [projectList, setProjectList] = useState(projects);
+
+    // console.log(projects);
 
     const addProject = () => {
         if (projectList.length < 3) {
@@ -378,22 +380,23 @@ const ProjectSection = () => {
             </div>
 
             {/* Projects Form */}
-            {projectList.map((num) => (
-                <div key={num} className="space-y-4 border-t pt-6">
+            {projectList.map((items, idx) => (
+                <div key={idx + 1} className="space-y-4 border-t pt-6">
                     <div className="text-lg font-semibold text-gray-700">
-                        Project {num}
+                        Project {idx + 1}
                     </div>
 
                     {/* Project Name */}
                     <div className="flex flex-col space-y-1">
                         <label
-                            htmlFor={`project-${num}-name`}
+                            htmlFor={`project-${idx + 1}-name`}
                             className="text-sm font-medium text-gray-700"
                         >
                             Project Name
                         </label>
                         <input
-                            id={`project-${num}-name`}
+                            value={items.projectName}
+                            id={`project-${idx + 1}-name`}
                             type="text"
                             placeholder="Enter project name..."
                             className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
@@ -403,13 +406,14 @@ const ProjectSection = () => {
                     {/* Short Description */}
                     <div className="flex flex-col space-y-1">
                         <label
-                            htmlFor={`project-${num}-desc`}
+                            htmlFor={`project-${idx + 1}-desc`}
                             className="text-sm font-medium text-gray-700"
                         >
                             Short Description
                         </label>
                         <textarea
-                            id={`project-${num}-desc`}
+                            value={items.description}
+                            id={`project-${idx + 1}-desc`}
                             rows={2}
                             placeholder="Enter short description..."
                             className="px-4 py-2 border border-gray-300 rounded-md text-sm resize-none focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
@@ -424,14 +428,17 @@ const ProjectSection = () => {
                                 className="flex flex-col space-y-1"
                             >
                                 <label
-                                    htmlFor={`project-${num}-point-${point}`}
+                                    htmlFor={`project-${
+                                        idx + 1
+                                    }-point-${point}`}
                                     className="text-sm font-medium text-gray-700"
                                 >
                                     Point {point}
                                 </label>
                                 <input
-                                    id={`project-${num}-point-${point}`}
+                                    id={`project-${idx + 1}-point-${point}`}
                                     type="text"
+                                    value={items.bulletPoints[point - 1]}
                                     placeholder="Enter key achievement or feature..."
                                     className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
                                 />
