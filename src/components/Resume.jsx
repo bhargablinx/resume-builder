@@ -5,8 +5,6 @@ export const Resume = () => {
         (state) => state.resume
     );
 
-    console.log(personalInfo, projects, experience, education);
-
     return (
         <div className="border sticky top-3 border-gray-300 shadow-2xl w-[595px] min-h-[842px] h-fit py-4 px-8 flex flex-col gap-4 bg-white">
             {/* Header */}
