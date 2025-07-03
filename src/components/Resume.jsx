@@ -57,66 +57,20 @@ export const Resume = () => {
 
             {/* PROJECTS */}
             <SectionHeading sectionName="PROJECTS">
-                <ProjectSection projectName={"Demo Project 1"}>
-                    <div className="text-[11px] leading-tight tracking-tight">
-                        A résumé generator built with React. Dynamic and fully
-                        editable résumé generator that allows users to:
-                    </div>
-                    <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
-                        <li>
-                            Input and manage general information, education, and
-                            work experience
-                        </li>
-                        <li>
-                            Edit and resubmit data with prefilled input fields
-                            for seamless updates
-                        </li>
-                        <li>
-                            View a live preview of the CV using conditional
-                            rendering and form state management
-                        </li>
-                    </ul>
-                </ProjectSection>
-                <ProjectSection projectName="Demo Project 2">
-                    <div className="text-[11px] leading-tight tracking-tight">
-                        A résumé generator built with React. Dynamic and fully
-                        editable résumé generator that allows users to:
-                    </div>
-                    <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
-                        <li>
-                            Input and manage general information, education, and
-                            work experience
-                        </li>
-                        <li>
-                            Edit and resubmit data with prefilled input fields
-                            for seamless updates
-                        </li>
-                        <li>
-                            View a live preview of the CV using conditional
-                            rendering and form state management
-                        </li>
-                    </ul>
-                </ProjectSection>
-                <ProjectSection projectName="Demo Project 3">
-                    <div className="text-[11px] leading-tight tracking-tight">
-                        A résumé generator built with React. Dynamic and fully
-                        editable résumé generator that allows users to:
-                    </div>
-                    <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
-                        <li>
-                            Input and manage general information, education, and
-                            work experience
-                        </li>
-                        <li>
-                            Edit and resubmit data with prefilled input fields
-                            for seamless updates
-                        </li>
-                        <li>
-                            View a live preview of the CV using conditional
-                            rendering and form state management
-                        </li>
-                    </ul>
-                </ProjectSection>
+                {projects.map((project) => {
+                    return (
+                        <ProjectSection projectName={project.projectName}>
+                            <div className="text-[11px] leading-tight tracking-tight">
+                                {project.description}
+                            </div>
+                            <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
+                                {project.bulletPoints.map((point) => (
+                                    <li>{point}</li>
+                                ))}
+                            </ul>
+                        </ProjectSection>
+                    );
+                })}
             </SectionHeading>
 
             {/* EXPERIENCE */}
