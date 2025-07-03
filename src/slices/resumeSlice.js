@@ -67,7 +67,19 @@ const resumeSlice = createSlice({
             },
         ],
     },
-    reducers: {},
+    reducers: {
+        changePersonalInfo: (state, action) => {},
+        changeProjects: (state, action) => {},
+        changeExperience: (state, action) => {},
+        changeEducation: (state, action) => {},
+    },
 });
+
+export const {
+    changePersonalInfo,
+    changeProjects,
+    changeExperience,
+    changeEducation,
+} = resumeSlice.actions;
 
 export default resumeSlice.reducer;
