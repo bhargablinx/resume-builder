@@ -17,6 +17,135 @@ export const ResumeControl = () => {
             <PersonalSection />
             <ProjectSection />
             <ExperienceSection />
+            <EducationSection />
+        </div>
+    );
+};
+
+export const EducationSection = () => {
+    const [educationList, setEducationList] = useState([1]);
+
+    const addEducation = () => {
+        if (educationList.length < 2) {
+            setEducationList((prev) => [...prev, prev.length + 1]);
+        }
+    };
+
+    return (
+        <div className="bg-white w-full max-w-[500px] p-6 rounded-xl border border-gray-300 shadow-sm space-y-6 transition hover:shadow-lg">
+            {/* Header */}
+            <div className="flex justify-between items-center">
+                <h2 className="text-2xl font-bold text-dark-red flex items-center">
+                    <i className="fa-solid fa-graduation-cap mr-3 text-lg"></i>
+                    EDUCATION
+                </h2>
+                {educationList.length < 2 && (
+                    <button
+                        onClick={addEducation}
+                        className="text-dark-red hover:text-red-700 text-xl transition-all"
+                        title="Add Education"
+                    >
+                        <i className="fa-solid fa-plus"></i>
+                    </button>
+                )}
+            </div>
+
+            {/* Education Input Blocks */}
+            {educationList.map((num) => (
+                <div key={num} className="space-y-4 border-t pt-6">
+                    <div className="text-lg font-semibold text-gray-700">
+                        Education {num}
+                    </div>
+
+                    {/* Institute */}
+                    <div className="flex flex-col space-y-1">
+                        <label
+                            htmlFor={`edu-${num}-institute`}
+                            className="text-sm font-medium text-gray-700"
+                        >
+                            Institute Name
+                        </label>
+                        <input
+                            id={`edu-${num}-institute`}
+                            type="text"
+                            placeholder="Enter institute name..."
+                            className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent"
+                        />
+                    </div>
+
+                    {/* Degree */}
+                    <div className="flex flex-col space-y-1">
+                        <label
+                            htmlFor={`edu-${num}-degree`}
+                            className="text-sm font-medium text-gray-700"
+                        >
+                            Degree
+                        </label>
+                        <input
+                            id={`edu-${num}-degree`}
+                            type="text"
+                            placeholder="e.g. B.Tech - Computer Science"
+                            className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent"
+                        />
+                    </div>
+
+                    {/* Start Date and End Date */}
+                    <div className="flex gap-4">
+                        <div className="flex flex-col space-y-1 w-1/2">
+                            <label className="text-sm font-medium text-gray-700">
+                                Start Date (Month, Year)
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="e.g. Aug, 2021"
+                                className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red"
+                            />
+                        </div>
+                        <div className="flex flex-col space-y-1 w-1/2">
+                            <label className="text-sm font-medium text-gray-700">
+                                End Date (Month, Year)
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="e.g. May, 2025"
+                                className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red"
+                            />
+                        </div>
+                    </div>
+
+                    {/* CGPA */}
+                    <div className="flex flex-col space-y-1">
+                        <label
+                            htmlFor={`edu-${num}-cgpa`}
+                            className="text-sm font-medium text-gray-700"
+                        >
+                            CGPA
+                        </label>
+                        <input
+                            id={`edu-${num}-cgpa`}
+                            type="text"
+                            placeholder="e.g. 8.5"
+                            className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent"
+                        />
+                    </div>
+
+                    {/* Additional Point */}
+                    <div className="flex flex-col space-y-1">
+                        <label
+                            htmlFor={`edu-${num}-point`}
+                            className="text-sm font-medium text-gray-700"
+                        >
+                            Highlight
+                        </label>
+                        <input
+                            id={`edu-${num}-point`}
+                            type="text"
+                            placeholder="e.g. Member of coding club, etc."
+                            className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent"
+                        />
+                    </div>
+                </div>
+            ))}
         </div>
     );
 };
