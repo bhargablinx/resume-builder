@@ -27,13 +27,14 @@ function ProjectSection() {
         setIsHidden((prev) => !prev);
     };
     return (
-        <div className="bg-white w-full max-w-[500px] p-6 rounded-xl border border-gray-300 shadow-sm space-y-3 transition hover:shadow-lg">
+        <div className="bg-white w-full max-w-[500px] p-6 rounded-xl border border-gray-300 shadow-sm space-y-4 transition hover:shadow-lg">
             <div
                 className="flex justify-between items-center cursor-pointer"
                 onClick={toggleAccordion}
             >
-                <h2 className="text-2xl font-bold text-dark-red">
-                    <i class="fa-solid fa-folder-tree mr-3 text-lg"></i>PROJECTS
+                <h2 className="text-2xl font-bold text-dark-red flex items-center">
+                    <i className="fa-solid fa-folder-tree mr-3 text-lg"></i>
+                    PROJECTS
                 </h2>
                 <span
                     className={`text-gray-400 transform transition-transform duration-300 ${
@@ -46,12 +47,73 @@ function ProjectSection() {
 
             <div
                 className={`overflow-hidden transition-[max-height] duration-500 ease-in-out ${
-                    isHidden ? "max-h-0" : "max-h-40"
+                    isHidden ? "max-h-0" : "max-h-[5000px]"
                 }`}
             >
-                <div>Project 1</div>
-                <div>Project 2</div>
-                <div>Project 3</div>
+                {[1, 2, 3].map((num) => (
+                    <div key={num} className="space-y-4 mt-6">
+                        <div className="text-lg font-semibold text-gray-700">
+                            Project {num}
+                        </div>
+
+                        {/* Project Name */}
+                        <div className="flex flex-col space-y-1">
+                            <label
+                                htmlFor={`project-${num}-name`}
+                                className="text-sm font-medium text-gray-700"
+                            >
+                                Project Name
+                            </label>
+                            <input
+                                id={`project-${num}-name`}
+                                type="text"
+                                placeholder="Enter project name..."
+                                className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
+                            />
+                        </div>
+
+                        {/* Short Description */}
+                        <div className="flex flex-col space-y-1">
+                            <label
+                                htmlFor={`project-${num}-desc`}
+                                className="text-sm font-medium text-gray-700"
+                            >
+                                Short Description
+                            </label>
+                            <textarea
+                                id={`project-${num}-desc`}
+                                rows={2}
+                                placeholder="Enter short description..."
+                                className="px-4 py-2 border border-gray-300 rounded-md text-sm resize-none focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
+                            />
+                        </div>
+
+                        {/* Bullet Points */}
+                        <div className="flex flex-col space-y-3">
+                            {[1, 2, 3].map((bullet) => (
+                                <div
+                                    key={bullet}
+                                    className="flex flex-col space-y-1"
+                                >
+                                    <label
+                                        htmlFor={`project-${num}-bullet-${bullet}`}
+                                        className="text-sm font-medium text-gray-700"
+                                    >
+                                        Point {bullet}
+                                    </label>
+                                    <input
+                                        id={`project-${num}-bullet-${bullet}`}
+                                        type="text"
+                                        placeholder={`Enter key achievement or feature...`}
+                                        className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+
+                        <hr className="mt-6 border-gray-200" />
+                    </div>
+                ))}
             </div>
         </div>
     );
