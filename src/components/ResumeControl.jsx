@@ -24,68 +24,83 @@ export const ResumeControl = () => {
 };
 
 function SkillSection() {
+    const [skills, setSkills] = useState([{ category: "", values: "" }]);
+
+    const handleChange = (index, field, value) => {
+        const updated = [...skills];
+        updated[index][field] = value;
+        setSkills(updated);
+    };
+
+    const addSkillCategory = () => {
+        if (skills.length < 3) {
+            setSkills([...skills, { category: "", values: "" }]);
+        }
+    };
+
     return (
         <div className="bg-white w-full max-w-[500px] p-6 rounded-xl border border-gray-300 shadow-sm space-y-4">
-            <h2 className="text-xl font-bold text-dark-red">
-                <i className="fa-solid fa-tools mr-2 text-lg" />
-                Skills
-            </h2>
-
-            {/* Skill Category 1 */}
-            <div className="flex flex-col space-y-1">
-                <label
-                    htmlFor="skill-category-1"
-                    className="text-sm font-medium text-gray-700"
-                >
-                    Category 1 (e.g. Web Technologies)
-                </label>
-                <input
-                    id="skill-category-1"
-                    type="text"
-                    placeholder="Enter category name..."
-                    className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent"
-                />
-                <label
-                    htmlFor="skill-values-1"
-                    className="text-sm font-medium text-gray-700 mt-2"
-                >
-                    Skills (comma separated)
-                </label>
-                <input
-                    id="skill-values-1"
-                    type="text"
-                    placeholder="e.g. HTML, CSS, JavaScript"
-                    className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent"
-                />
+            {/* Header */}
+            <div className="flex items-center justify-between">
+                <h2 className="text-xl font-bold text-dark-red flex items-center gap-2">
+                    <i className="fa-solid fa-screwdriver-wrench text-lg" />
+                    Skills
+                </h2>
+                {skills.length < 3 && (
+                    <button
+                        onClick={addSkillCategory}
+                        className="text-dark-red hover:text-light-red transition"
+                        title="Add skill category"
+                    >
+                        <i className="fa-solid fa-plus text-lg" />
+                    </button>
+                )}
             </div>
 
-            {/* Skill Category 2 */}
-            <div className="flex flex-col space-y-1">
-                <label
-                    htmlFor="skill-category-2"
-                    className="text-sm font-medium text-gray-700"
-                >
-                    Category 2 (e.g. Tools & Platforms)
-                </label>
-                <input
-                    id="skill-category-2"
-                    type="text"
-                    placeholder="Enter category name..."
-                    className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent"
-                />
-                <label
-                    htmlFor="skill-values-2"
-                    className="text-sm font-medium text-gray-700 mt-2"
-                >
-                    Skills (comma separated)
-                </label>
-                <input
-                    id="skill-values-2"
-                    type="text"
-                    placeholder="e.g. Git, GitHub, Linux"
-                    className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent"
-                />
-            </div>
+            {/* Skill Fields */}
+            {skills.map((skill, index) => (
+                <div key={index} className="space-y-2 border-t pt-4">
+                    {/* Category */}
+                    <div className="flex flex-col">
+                        <label
+                            htmlFor={`category-${index}`}
+                            className="text-sm font-medium text-gray-700"
+                        >
+                            Category {index + 1}
+                        </label>
+                        <input
+                            id={`category-${index}`}
+                            type="text"
+                            placeholder="e.g. Web Technologies"
+                            value={skill.category}
+                            onChange={(e) =>
+                                handleChange(index, "category", e.target.value)
+                            }
+                            className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red"
+                        />
+                    </div>
+
+                    {/* Values */}
+                    <div className="flex flex-col">
+                        <label
+                            htmlFor={`skills-${index}`}
+                            className="text-sm font-medium text-gray-700"
+                        >
+                            Skills (comma separated)
+                        </label>
+                        <input
+                            id={`skills-${index}`}
+                            type="text"
+                            placeholder="e.g. HTML, CSS, JavaScript"
+                            value={skill.values}
+                            onChange={(e) =>
+                                handleChange(index, "values", e.target.value)
+                            }
+                            className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red"
+                        />
+                    </div>
+                </div>
+            ))}
         </div>
     );
 }
