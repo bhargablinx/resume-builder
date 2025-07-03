@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changePersonalInfo, changeSkills } from "../slices/resumeSlice";
+import {
+    changePersonalInfo,
+    changeSkills,
+    changeProjects,
+} from "../slices/resumeSlice";
 
 export const ResumeControl = () => {
     const { personalInfo, skill, projects, experience, education } =
@@ -351,14 +355,24 @@ function ExperienceSection() {
 
 const ProjectSection = ({ projects }) => {
     const [projectList, setProjectList] = useState(projects);
+    const dispatch = useDispatch();
 
-    // console.log(projects);
+    const handleChange = (value, index, field) => {
+        const updated = projectList.map((p, i) =>
+            i === index ? { ...p, [field]: value } : p
+        );
+        setProjectList(updated);
+    };
 
     const addProject = () => {
         if (projectList.length < 3) {
             setProjectList((prev) => [...prev, prev.length + 1]);
         }
     };
+
+    useEffect(() => {
+        dispatch(changeProjects(projectList));
+    }, [projectList]);
 
     return (
         <div className="bg-white w-full max-w-[500px] p-6 rounded-xl border border-gray-300 shadow-sm space-y-6 transition hover:shadow-lg">
@@ -396,6 +410,9 @@ const ProjectSection = ({ projects }) => {
                         </label>
                         <input
                             value={items.projectName}
+                            onChange={(e) =>
+                                handleChange(e.target.value, idx, "projectName")
+                            }
                             id={`project-${idx + 1}-name`}
                             type="text"
                             placeholder="Enter project name..."
@@ -413,6 +430,9 @@ const ProjectSection = ({ projects }) => {
                         </label>
                         <textarea
                             value={items.description}
+                            onChange={(e) =>
+                                handleChange(e.target.value, idx, "description")
+                            }
                             id={`project-${idx + 1}-desc`}
                             rows={2}
                             placeholder="Enter short description..."
