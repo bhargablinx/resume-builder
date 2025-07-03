@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changePersonalInfo } from "../slices/resumeSlice";
+import { changePersonalInfo, changeSkills } from "../slices/resumeSlice";
 
 export const ResumeControl = () => {
     const { personalInfo, skill, projects, experience, education } =
@@ -30,18 +30,24 @@ export const ResumeControl = () => {
 
 function SkillSection({ skill }) {
     const [skills, setSkills] = useState(skill);
+    const dispatch = useDispatch();
 
     const handleChange = (index, field, value) => {
-        const updated = [...skills];
-        updated[index][field] = value;
+        const updated = skills.map((s, i) =>
+            i === index ? { ...s, [field]: value } : s
+        );
         setSkills(updated);
     };
 
     const addSkillCategory = () => {
         if (skills.length < 3) {
-            setSkills([...skills, { category: "", values: "" }]);
+            setSkills([...skills, { categoryName: "", skills: "" }]);
         }
     };
+
+    useEffect(() => {
+        dispatch(changeSkills(skills));
+    }, [skills]);
 
     return (
         <div className="bg-white w-full max-w-[500px] p-6 rounded-xl border border-gray-300 shadow-sm space-y-4">
@@ -79,13 +85,17 @@ function SkillSection({ skill }) {
                             placeholder="e.g. Web Technologies"
                             value={skill.categoryName}
                             onChange={(e) =>
-                                handleChange(index, "category", e.target.value)
+                                handleChange(
+                                    index,
+                                    "categoryName",
+                                    e.target.value
+                                )
                             }
                             className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red"
                         />
                     </div>
 
-                    {/* Values */}
+                    {/* Skills */}
                     <div className="flex flex-col">
                         <label
                             htmlFor={`skills-${index}`}
@@ -99,7 +109,7 @@ function SkillSection({ skill }) {
                             placeholder="e.g. HTML, CSS, JavaScript"
                             value={skill.skills}
                             onChange={(e) =>
-                                handleChange(index, "values", e.target.value)
+                                handleChange(index, "skills", e.target.value)
                             }
                             className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red"
                         />
