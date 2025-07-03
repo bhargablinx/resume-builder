@@ -95,20 +95,21 @@ export const Resume = () => {
 
             {/* EDUCATION */}
             <SectionHeading sectionName="EDUCATION">
-                <EducationSection
-                    institute="Central Institute of Technology, Kokrajhar"
-                    degree="Bachelor of Technology (B.Tech) - Computer Science"
-                    startDate="Aug, 2021"
-                    endDate="May, 2025"
-                >
-                    <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
-                        <li>CGPA: 8.5 (Till 6th Semester)</li>
-                        <li>
-                            Relevant Coursework: Data Structures, OS, CN, Web
-                            Dev
-                        </li>
-                    </ul>
-                </EducationSection>
+                {education.map((education) => {
+                    return (
+                        <EducationSection
+                            institute={education.institute}
+                            degree={education.degree}
+                            startDate={education.startDate}
+                            endDate={education.endDate}
+                        >
+                            <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
+                                <li>CGPA: {education.cgpa}</li>
+                                <li>{education.otherInfo}</li>
+                            </ul>
+                        </EducationSection>
+                    );
+                })}
             </SectionHeading>
         </div>
     );
