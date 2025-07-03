@@ -73,7 +73,10 @@ const resumeSlice = createSlice({
         ],
     },
     reducers: {
-        changePersonalInfo: (state, action) => {},
+        changePersonalInfo: (state, action) => {
+            state.personalInfo.name = action.payload.name;
+            state.personalInfo.address = action.payload.address;
+        },
         changeSkills: (state, action) => {},
         changeProjects: (state, action) => {},
         changeExperience: (state, action) => {},

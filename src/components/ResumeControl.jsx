@@ -1,6 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changePersonalInfo } from "../slices/resumeSlice";
 
 export const ResumeControl = () => {
+    const { personalInfo, skill, projects, experience, education } =
+        useSelector((state) => state.resume);
+
     return (
         <div className="flex-1 flex flex-col items-center gap-[30px]">
             <div className="flex justify-between w-[300px]">
@@ -14,7 +19,7 @@ export const ResumeControl = () => {
                     Load Sample
                 </button>
             </div>
-            <PersonalSection />
+            <PersonalSection personalInfo={personalInfo} />
             <SkillSection />
             <ProjectSection />
             <ExperienceSection />
@@ -429,7 +434,23 @@ const ProjectSection = () => {
     );
 };
 
-function PersonalSection() {
+function PersonalSection({ personalInfo }) {
+    const [name, setName] = useState(personalInfo.name || "");
+    const [address, setAddress] = useState(personalInfo.address || "");
+    const [email, setEmail] = useState(personalInfo.email || "");
+    const [github, setGithub] = useState(personalInfo.github || "");
+    const [linkedIn, setlinkedIn] = useState(personalInfo.linkedIn || "");
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (name || address || email || github || linkedIn) {
+            dispatch(
+                changePersonalInfo({ name, address, email, github, linkedIn })
+            );
+        }
+    }, [name, address, email, github, linkedIn, dispatch]);
+
     return (
         <div className="bg-white w-full max-w-[500px] p-6 pb-8 rounded-xl border border-gray-300 shadow-sm space-y-6">
             <div className="text-2xl font-bold text-dark-red">
@@ -445,6 +466,8 @@ function PersonalSection() {
                     Full Name
                 </label>
                 <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     id="full-name"
                     type="text"
                     placeholder="Enter full name..."
@@ -461,6 +484,8 @@ function PersonalSection() {
                     Address
                 </label>
                 <input
+                    value={address}
+                    onChange={(e) => setAddress(e.target.value)}
                     id="address"
                     placeholder="Enter your address..."
                     className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all resize-none"
@@ -476,6 +501,8 @@ function PersonalSection() {
                     Email
                 </label>
                 <input
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                     id="email"
                     type="email"
                     placeholder="Enter email address..."
@@ -492,6 +519,8 @@ function PersonalSection() {
                     GitHub Link
                 </label>
                 <input
+                    value={github}
+                    onChange={(e) => setGithub(e.target.value)}
                     id="github"
                     type="url"
                     placeholder="https://github.com/username"
@@ -508,6 +537,8 @@ function PersonalSection() {
                     LinkedIn Link
                 </label>
                 <input
+                    value={linkedIn}
+                    onChange={(e) => setlinkedIn(e.target.value)}
                     id="linkedin"
                     type="url"
                     placeholder="https://www.linkedin.com/in/username"
