@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux";
 
 export const Resume = () => {
-    const { personalInfo, projects, experience, education } = useSelector(
-        (state) => state.resume
-    );
+    const { personalInfo, skill, projects, experience, education } =
+        useSelector((state) => state.resume);
+
+    // console.log(Obskill);
 
     return (
         <div className="w-[650px] sticky top-0 max-h-screen overflow-y-auto border border-gray-300 shadow-2xl py-6 px-10 flex flex-col gap-5 bg-white">
@@ -42,14 +43,11 @@ export const Resume = () => {
             {/* SKILLS */}
             <SectionHeading sectionName="SKILLS">
                 <ul className="text-[11px] space-y-0.5 leading-tight tracking-tight">
-                    <li>
-                        <span className="font-bold">Web Technologies</span>:
-                        HTML, CSS, JavaScript, TailwindCSS, ReactJS, Redux
-                    </li>
-                    <li>
-                        <span className="font-bold">Tools & Platform</span>:
-                        Git, GitHub, Linux
-                    </li>
+                    {Object.entries(skill).map(([key, value]) => (
+                        <li key={key}>
+                            <span className="font-bold">{key}</span>: {value}
+                        </li>
+                    ))}
                 </ul>
             </SectionHeading>
 
