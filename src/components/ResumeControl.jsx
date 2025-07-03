@@ -20,7 +20,7 @@ export const ResumeControl = () => {
                 </button>
             </div>
             <PersonalSection personalInfo={personalInfo} />
-            <SkillSection />
+            <SkillSection skill={skill} />
             <ProjectSection />
             <ExperienceSection />
             <EducationSection />
@@ -28,8 +28,8 @@ export const ResumeControl = () => {
     );
 };
 
-function SkillSection() {
-    const [skills, setSkills] = useState([{ category: "", values: "" }]);
+function SkillSection({ skill }) {
+    const [skills, setSkills] = useState(skill);
 
     const handleChange = (index, field, value) => {
         const updated = [...skills];
@@ -77,7 +77,7 @@ function SkillSection() {
                             id={`category-${index}`}
                             type="text"
                             placeholder="e.g. Web Technologies"
-                            value={skill.category}
+                            value={skill.categoryName}
                             onChange={(e) =>
                                 handleChange(index, "category", e.target.value)
                             }
@@ -97,7 +97,7 @@ function SkillSection() {
                             id={`skills-${index}`}
                             type="text"
                             placeholder="e.g. HTML, CSS, JavaScript"
-                            value={skill.values}
+                            value={skill.skills}
                             onChange={(e) =>
                                 handleChange(index, "values", e.target.value)
                             }
