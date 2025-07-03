@@ -1,17 +1,25 @@
+import { useSelector } from "react-redux";
+
 export const Resume = () => {
+    const { personalInfo, projects, experience, education } = useSelector(
+        (state) => state.resume
+    );
+
+    console.log(personalInfo, projects, experience, education);
+
     return (
         <div className="border sticky top-3 border-gray-300 shadow-2xl w-[595px] min-h-[842px] h-fit py-4 px-8 flex flex-col gap-4 bg-white">
             {/* Header */}
             <header className="text-center">
-                <div className="text-[26px] font-bold">BHARGAB BHUYAN</div>
+                <div className="text-[26px] font-bold">{personalInfo.name}</div>
                 <ul className="flex justify-center gap-2 text-[11px] list-none text-gray-800">
-                    <li>Assam, India</li>
+                    <li>{personalInfo.address}</li>
                     <li>&#8226;</li>
-                    <li>bhargabbhuyan001@gmail.com</li>
+                    <li>{personalInfo.email}</li>
                     <li>&#8226;</li>
                     <li className="underline">
                         <a
-                            href="https://github.com/bhargab001"
+                            href={personalInfo.githubLink}
                             target="_blank"
                             rel="noreferrer"
                             className="hover:underline"
@@ -22,7 +30,7 @@ export const Resume = () => {
                     <li>&#8226;</li>
                     <li className="underline">
                         <a
-                            href="https://linkedin.com/in/your-profile"
+                            href={personalInfo.linkedInLink}
                             target="_blank"
                             rel="noreferrer"
                             className="hover:underline"
