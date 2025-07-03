@@ -364,6 +364,23 @@ const ProjectSection = ({ projects }) => {
         setProjectList(updated);
     };
 
+    const handleBulletPointChange = (value, projectIndex, bulletIndex) => {
+        const updatedProjects = projectList.map((project, i) => {
+            if (i === projectIndex) {
+                const updatedBulletPoints = [...project.bulletPoints];
+                updatedBulletPoints[bulletIndex] = value;
+
+                return {
+                    ...project,
+                    bulletPoints: updatedBulletPoints,
+                };
+            }
+            return project;
+        });
+
+        setProjectList(updatedProjects);
+    };
+
     const addProject = () => {
         if (projectList.length < 3) {
             setProjectList((prev) => [...prev, prev.length + 1]);
@@ -459,6 +476,13 @@ const ProjectSection = ({ projects }) => {
                                     id={`project-${idx + 1}-point-${point}`}
                                     type="text"
                                     value={items.bulletPoints[point - 1]}
+                                    onChange={(e) =>
+                                        handleBulletPointChange(
+                                            e.target.value,
+                                            idx,
+                                            point - 1
+                                        )
+                                    }
                                     placeholder="Enter key achievement or feature..."
                                     className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
                                 />
