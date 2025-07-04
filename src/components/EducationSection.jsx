@@ -51,7 +51,7 @@ export default function EducationSection({ education }) {
             {educationList.map((edu, num) => (
                 <div key={num} className="space-y-4 border-t pt-6">
                     <div className="text-lg font-semibold text-gray-700">
-                        Education {num}
+                        Education {num + 1}
                     </div>
 
                     {/* Institute */}
