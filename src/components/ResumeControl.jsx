@@ -6,16 +6,25 @@ import {
     changeProjects,
     changeExperience,
     changeEducation,
+    clearFields,
 } from "../slices/resumeSlice";
 
 export const ResumeControl = () => {
     const { personalInfo, skill, projects, experience, education } =
         useSelector((state) => state.resume);
+    const dispatch = useDispatch();
+
+    const handleClearField = () => {
+        dispatch(clearFields());
+    };
 
     return (
         <div className="flex-1 flex flex-col items-center gap-[30px]">
             <div className="flex justify-center gap-4">
-                <button className="border border-red-400 text-red-500 hover:bg-red-50 px-4 py-1.5 rounded-md text-sm font-medium transition-all cursor-pointer">
+                <button
+                    onClick={handleClearField}
+                    className="border border-red-400 text-red-500 hover:bg-red-50 px-4 py-1.5 rounded-md text-sm font-medium transition-all cursor-pointer"
+                >
                     Clear Fields
                 </button>
                 <button className="bg-dark-red text-white hover:bg-red-700 px-4 py-1.5 rounded-md text-sm font-medium transition-all cursor-pointer">
@@ -38,6 +47,10 @@ export const ResumeControl = () => {
 function SkillSection({ skill }) {
     const [skills, setSkills] = useState(skill);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        setSkills(skill); // Update local state when Redux skill updates
+    }, [skill]);
 
     const handleChange = (index, field, value) => {
         const updated = skills.map((s, i) =>
@@ -130,6 +143,10 @@ function SkillSection({ skill }) {
 const EducationSection = ({ education }) => {
     const [educationList, setEducationList] = useState(education);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        setEducationList(education); // Update local state when Redux skill updates
+    }, [education]);
 
     const handleChange = (index, field, value) => {
         const updated = educationList.map((ed, i) =>
@@ -298,6 +315,10 @@ const EducationSection = ({ education }) => {
 function ExperienceSection({ experience }) {
     const [experienceList, setExperienceList] = useState(experience);
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        setExperienceList(experience); // Update local state when Redux skill updates
+    }, [experience]);
 
     const handleChange = (index, field, value) => {
         const updated = experienceList.map((e, i) =>
@@ -469,6 +490,10 @@ const ProjectSection = ({ projects }) => {
     const [projectList, setProjectList] = useState(projects);
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        setProjectList(projects); // Update local state when Redux skill updates
+    }, [projects]);
+
     const handleChange = (value, index, field) => {
         const updated = projectList.map((p, i) =>
             i === index ? { ...p, [field]: value } : p
@@ -615,6 +640,14 @@ function PersonalSection({ personalInfo }) {
     const [linkedIn, setlinkedIn] = useState(personalInfo.linkedIn || "");
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        setName(personalInfo.name); // Update local state when Redux skill updates
+        setAddress(personalInfo.address); // Update local state when Redux skill updates
+        setEmail(personalInfo.email); // Update local state when Redux skill updates
+        setGithub(personalInfo.github); // Update local state when Redux skill updates
+        setlinkedIn(personalInfo.linkedIn); // Update local state when Redux skill updates
+    }, [personalInfo]);
 
     useEffect(() => {
         if (name || address || email || github || linkedIn) {
