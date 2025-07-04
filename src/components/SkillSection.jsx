@@ -33,7 +33,8 @@ export default function SkillSection({ skill }) {
             <div className="flex items-center justify-between">
                 <h2 className="text-xl font-bold text-dark-red flex items-center gap-2">
                     <i className="fa-solid fa-screwdriver-wrench text-lg" />
-                    Skills
+                    <span>Skills</span>
+                    <span className="text-[10px] mt-2">(max 3 categories)</span>
                 </h2>
                 {skills.length < 3 && (
                     <button

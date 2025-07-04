@@ -47,9 +47,10 @@ export default function ExperienceSection({ experience }) {
     return (
         <div className="bg-white w-full max-w-[500px] p-6 rounded-xl border border-gray-300 shadow-sm space-y-6 transition hover:shadow-lg">
             <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-bold text-dark-red flex items-center">
-                    <i className="fa-solid fa-briefcase mr-3 text-lg"></i>
-                    EXPERIENCE
+                <h2 className="text-2xl font-bold text-dark-red flex items-center gap-2">
+                    <i className="fa-solid fa-briefcase text-lg"></i>
+                    <span>EXPERIENCE</span>
+                    <span className="text-[10px] mt-2">(max 3 categories)</span>
                 </h2>
                 {experienceList.length < 2 && (
                     <button

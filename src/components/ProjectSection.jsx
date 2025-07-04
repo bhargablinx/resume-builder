@@ -48,9 +48,10 @@ export default function ProjectSection({ projects }) {
         <div className="bg-white w-full max-w-[500px] p-6 rounded-xl border border-gray-300 shadow-sm space-y-6 transition hover:shadow-lg">
             {/* Header with + icon */}
             <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-bold text-dark-red flex items-center">
-                    <i className="fa-solid fa-folder-tree mr-3 text-lg"></i>
-                    PROJECTS
+                <h2 className="text-2xl font-bold text-dark-red flex items-center gap-2">
+                    <i className="fa-solid fa-folder-tree text-lg"></i>
+                    <span>PROJECTS</span>
+                    <span className="text-[10px] mt-2">(max 3 categories)</span>
                 </h2>
                 {projectList.length < 3 && (
                     <button

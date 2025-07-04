@@ -18,7 +18,7 @@ export default function EducationSection({ education }) {
     };
 
     const addEducation = () => {
-        if (educationList.length < 2) {
+        if (educationList.length < 3) {
             setEducationList((prev) => [...prev, prev.length + 1]);
         }
     };
@@ -31,11 +31,12 @@ export default function EducationSection({ education }) {
         <div className="bg-white w-full max-w-[500px] p-6 rounded-xl border border-gray-300 shadow-sm space-y-6 transition hover:shadow-lg">
             {/* Header */}
             <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-bold text-dark-red flex items-center">
-                    <i className="fa-solid fa-graduation-cap mr-3 text-lg"></i>
-                    EDUCATION
+                <h2 className="text-2xl font-bold text-dark-red flex items-center gap-2">
+                    <i className="fa-solid fa-graduation-cap text-lg"></i>
+                    <span>EDUCATION</span>
+                    <span className="text-[10px] mt-2">(max 3 categories)</span>
                 </h2>
-                {educationList.length < 2 && (
+                {educationList.length < 3 && (
                     <button
                         onClick={addEducation}
                         className="text-dark-red hover:text-red-700 text-xl transition-all"
