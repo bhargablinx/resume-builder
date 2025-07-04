@@ -94,7 +94,9 @@ const resumeSlice = createSlice({
         changeExperience: (state, action) => {
             state.experience = action.payload;
         },
-        changeEducation: (state, action) => {},
+        changeEducation: (state, action) => {
+            state.education = action.payload;
+        },
     },
 });
 
