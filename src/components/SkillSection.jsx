@@ -23,6 +23,11 @@ export default function SkillSection({ skill }) {
         }
     };
 
+    const removeSkillCategory = (index) => {
+        const updated = skills.filter((_, i) => i !== index);
+        setSkills(updated);
+    };
+
     useEffect(() => {
         dispatch(changeSkills(skills));
     }, [skills]);
@@ -53,12 +58,21 @@ export default function SkillSection({ skill }) {
                     <div key={index} className="space-y-2 border-t pt-4">
                         {/* Category */}
                         <div className="flex flex-col">
-                            <label
-                                htmlFor={`category-${index}`}
-                                className="text-sm font-medium text-gray-700"
-                            >
-                                Category {index + 1}
-                            </label>
+                            <div className="flex justify-between mb-2   ">
+                                <label
+                                    htmlFor={`category-${index}`}
+                                    className="text-sm font-medium text-gray-700"
+                                >
+                                    Category {index + 1}
+                                </label>
+                                <button
+                                    onClick={() => removeSkillCategory(index)}
+                                    className="text-red-500 hover:text-red-700 text-[10px]"
+                                    title="Remove this skill category"
+                                >
+                                    <i className="fa-solid fa-trash"></i>
+                                </button>
+                            </div>
                             <input
                                 id={`category-${index}`}
                                 type="text"
