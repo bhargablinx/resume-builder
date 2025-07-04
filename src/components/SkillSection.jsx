@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { changeSkills } from "../slices/resumeSlice";
 
 export default function SkillSection({ skill }) {
-    const [skills, setSkills] = useState(skill);
+    const [skills, setSkills] = useState(skill || []);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -48,53 +48,58 @@ export default function SkillSection({ skill }) {
             </div>
 
             {/* Skill Fields */}
-            {skills.map((skill, index) => (
-                <div key={index} className="space-y-2 border-t pt-4">
-                    {/* Category */}
-                    <div className="flex flex-col">
-                        <label
-                            htmlFor={`category-${index}`}
-                            className="text-sm font-medium text-gray-700"
-                        >
-                            Category {index + 1}
-                        </label>
-                        <input
-                            id={`category-${index}`}
-                            type="text"
-                            placeholder="e.g. Web Technologies"
-                            value={skill.categoryName}
-                            onChange={(e) =>
-                                handleChange(
-                                    index,
-                                    "categoryName",
-                                    e.target.value
-                                )
-                            }
-                            className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red"
-                        />
-                    </div>
+            {skills.length !== 0 &&
+                skills.map((skill, index) => (
+                    <div key={index} className="space-y-2 border-t pt-4">
+                        {/* Category */}
+                        <div className="flex flex-col">
+                            <label
+                                htmlFor={`category-${index}`}
+                                className="text-sm font-medium text-gray-700"
+                            >
+                                Category {index + 1}
+                            </label>
+                            <input
+                                id={`category-${index}`}
+                                type="text"
+                                placeholder="e.g. Web Technologies"
+                                value={skill.categoryName}
+                                onChange={(e) =>
+                                    handleChange(
+                                        index,
+                                        "categoryName",
+                                        e.target.value
+                                    )
+                                }
+                                className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red"
+                            />
+                        </div>
 
-                    {/* Skills */}
-                    <div className="flex flex-col">
-                        <label
-                            htmlFor={`skills-${index}`}
-                            className="text-sm font-medium text-gray-700"
-                        >
-                            Skills (comma separated)
-                        </label>
-                        <input
-                            id={`skills-${index}`}
-                            type="text"
-                            placeholder="e.g. HTML, CSS, JavaScript"
-                            value={skill.skills}
-                            onChange={(e) =>
-                                handleChange(index, "skills", e.target.value)
-                            }
-                            className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red"
-                        />
+                        {/* Skills */}
+                        <div className="flex flex-col">
+                            <label
+                                htmlFor={`skills-${index}`}
+                                className="text-sm font-medium text-gray-700"
+                            >
+                                Skills (comma separated)
+                            </label>
+                            <input
+                                id={`skills-${index}`}
+                                type="text"
+                                placeholder="e.g. HTML, CSS, JavaScript"
+                                value={skill.skills}
+                                onChange={(e) =>
+                                    handleChange(
+                                        index,
+                                        "skills",
+                                        e.target.value
+                                    )
+                                }
+                                className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red"
+                            />
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
         </div>
     );
 }
