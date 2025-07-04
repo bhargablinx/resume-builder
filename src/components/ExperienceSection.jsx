@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { changeExperience } from "../slices/resumeSlice";
 
 export default function ExperienceSection({ experience }) {
-    const [experienceList, setExperienceList] = useState(experience);
+    const [experienceList, setExperienceList] = useState(experience || []);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -35,9 +35,23 @@ export default function ExperienceSection({ experience }) {
     };
 
     const addExperience = () => {
-        if (experienceList.length < 2) {
-            setExperienceList((prev) => [...prev, prev.length + 1]);
+        if (experienceList.length < 3) {
+            setExperienceList((prev) => [
+                ...prev,
+                {
+                    companyName: "",
+                    startDate: "",
+                    endDate: "",
+                    jobRole: "",
+                    bulletPoints: ["", "", ""],
+                },
+            ]);
         }
+    };
+
+    const removeExperienceCategory = (index) => {
+        const updated = experienceList.filter((_, i) => i !== index);
+        setExperienceList(updated);
     };
 
     useEffect(() => {
@@ -67,9 +81,20 @@ export default function ExperienceSection({ experience }) {
                 <div key={expIndex} className="space-y-4 border-t pt-6">
                     {/* Company Name */}
                     <div className="flex flex-col space-y-1">
-                        <label className="text-sm font-medium text-gray-700">
-                            Company Name
-                        </label>
+                        <div className="flex justify-between mb-2">
+                            <label className="text-sm font-medium text-gray-700">
+                                Company Name
+                            </label>
+                            <button
+                                onClick={() =>
+                                    removeExperienceCategory(expIndex)
+                                }
+                                className="text-red-500 hover:text-red-700 text-[10px]"
+                                title="Remove this skill category"
+                            >
+                                <i className="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
                         <input
                             value={item.companyName}
                             onChange={(e) =>
