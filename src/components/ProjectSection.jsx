@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { changeProjects } from "../slices/resumeSlice";
 
 export default function ProjectSection({ projects }) {
-    const [projectList, setProjectList] = useState(projects);
+    const [projectList, setProjectList] = useState(projects || []);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -36,8 +36,20 @@ export default function ProjectSection({ projects }) {
 
     const addProject = () => {
         if (projectList.length < 3) {
-            setProjectList((prev) => [...prev, prev.length + 1]);
+            setProjectList((prev) => [
+                ...prev,
+                {
+                    projectName: "",
+                    description: "",
+                    bulletPoints: ["", "", ""],
+                },
+            ]);
         }
+    };
+
+    const removeProjectCategory = (index) => {
+        const updated = projectList.filter((_, i) => i !== index);
+        setProjectList(updated);
     };
 
     useEffect(() => {
@@ -65,86 +77,104 @@ export default function ProjectSection({ projects }) {
             </div>
 
             {/* Projects Form */}
-            {projectList.map((items, idx) => (
-                <div key={idx + 1} className="space-y-4 border-t pt-6">
-                    <div className="text-lg font-semibold text-gray-700">
-                        Project {idx + 1}
-                    </div>
+            {projectList.length !== 0 &&
+                projectList.map((items, idx) => (
+                    <div key={idx + 1} className="space-y-4 border-t pt-6">
+                        <div className="text-lg font-semibold text-gray-700">
+                            Project {idx + 1}
+                        </div>
 
-                    {/* Project Name */}
-                    <div className="flex flex-col space-y-1">
-                        <label
-                            htmlFor={`project-${idx + 1}-name`}
-                            className="text-sm font-medium text-gray-700"
-                        >
-                            Project Name
-                        </label>
-                        <input
-                            value={items.projectName}
-                            onChange={(e) =>
-                                handleChange(e.target.value, idx, "projectName")
-                            }
-                            id={`project-${idx + 1}-name`}
-                            type="text"
-                            placeholder="Enter project name..."
-                            className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
-                        />
-                    </div>
-
-                    {/* Short Description */}
-                    <div className="flex flex-col space-y-1">
-                        <label
-                            htmlFor={`project-${idx + 1}-desc`}
-                            className="text-sm font-medium text-gray-700"
-                        >
-                            Short Description
-                        </label>
-                        <textarea
-                            value={items.description}
-                            onChange={(e) =>
-                                handleChange(e.target.value, idx, "description")
-                            }
-                            id={`project-${idx + 1}-desc`}
-                            rows={2}
-                            placeholder="Enter short description..."
-                            className="px-4 py-2 border border-gray-300 rounded-md text-sm resize-none focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
-                        />
-                    </div>
-
-                    {/* Bullet Points */}
-                    <div className="flex flex-col space-y-3">
-                        {[1, 2, 3].map((point) => (
-                            <div
-                                key={point}
-                                className="flex flex-col space-y-1"
-                            >
+                        {/* Project Name */}
+                        <div className="flex flex-col space-y-1">
+                            <div className="flex justify-between mb-2">
                                 <label
-                                    htmlFor={`project-${
-                                        idx + 1
-                                    }-point-${point}`}
+                                    htmlFor={`project-${idx + 1}-name`}
                                     className="text-sm font-medium text-gray-700"
                                 >
-                                    Point {point}
+                                    Project Name
                                 </label>
-                                <input
-                                    id={`project-${idx + 1}-point-${point}`}
-                                    type="text"
-                                    value={items.bulletPoints[point - 1]}
-                                    onChange={(e) =>
-                                        handleBulletPointChange(
-                                            e.target.value,
-                                            idx,
-                                            point - 1
-                                        )
-                                    }
-                                    placeholder="Enter key achievement or feature..."
-                                    className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
-                                />
+                                <button
+                                    onClick={() => removeProjectCategory(idx)}
+                                    className="text-red-500 hover:text-red-700 text-[10px]"
+                                    title="Remove this skill category"
+                                >
+                                    <i className="fa-solid fa-trash"></i>
+                                </button>
                             </div>
-                        ))}
+                            <input
+                                value={items.projectName}
+                                onChange={(e) =>
+                                    handleChange(
+                                        e.target.value,
+                                        idx,
+                                        "projectName"
+                                    )
+                                }
+                                id={`project-${idx + 1}-name`}
+                                type="text"
+                                placeholder="Enter project name..."
+                                className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
+                            />
+                        </div>
+
+                        {/* Short Description */}
+                        <div className="flex flex-col space-y-1">
+                            <label
+                                htmlFor={`project-${idx + 1}-desc`}
+                                className="text-sm font-medium text-gray-700"
+                            >
+                                Short Description
+                            </label>
+                            <textarea
+                                value={items.description}
+                                onChange={(e) =>
+                                    handleChange(
+                                        e.target.value,
+                                        idx,
+                                        "description"
+                                    )
+                                }
+                                id={`project-${idx + 1}-desc`}
+                                rows={2}
+                                placeholder="Enter short description..."
+                                className="px-4 py-2 border border-gray-300 rounded-md text-sm resize-none focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
+                            />
+                        </div>
+
+                        {/* Bullet Points */}
+                        <div className="flex flex-col space-y-3">
+                            {[1, 2, 3].map((point) => (
+                                <div
+                                    key={point}
+                                    className="flex flex-col space-y-1"
+                                >
+                                    <label
+                                        htmlFor={`project-${
+                                            idx + 1
+                                        }-point-${point}`}
+                                        className="text-sm font-medium text-gray-700"
+                                    >
+                                        Point {point}
+                                    </label>
+                                    <input
+                                        id={`project-${idx + 1}-point-${point}`}
+                                        type="text"
+                                        value={items.bulletPoints[point - 1]}
+                                        onChange={(e) =>
+                                            handleBulletPointChange(
+                                                e.target.value,
+                                                idx,
+                                                point - 1
+                                            )
+                                        }
+                                        placeholder="Enter key achievement or feature..."
+                                        className="px-4 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-dark-red focus:border-transparent transition-all"
+                                    />
+                                </div>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            ))}
+                ))}
         </div>
     );
 }
