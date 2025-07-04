@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { changeEducation } from "../slices/resumeSlice";
 
 export default function EducationSection({ education }) {
-    const [educationList, setEducationList] = useState(education);
+    const [educationList, setEducationList] = useState(education || []);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -21,6 +21,11 @@ export default function EducationSection({ education }) {
         if (educationList.length < 3) {
             setEducationList((prev) => [...prev, prev.length + 1]);
         }
+    };
+
+    const removeEducationCategory = (index) => {
+        const updated = educationList.filter((_, i) => i !== index);
+        setEducationList(updated);
     };
 
     useEffect(() => {
@@ -56,12 +61,21 @@ export default function EducationSection({ education }) {
 
                     {/* Institute */}
                     <div className="flex flex-col space-y-1">
-                        <label
-                            htmlFor={`edu-${num}-institute`}
-                            className="text-sm font-medium text-gray-700"
-                        >
-                            Institute Name
-                        </label>
+                        <div className="flex justify-between mb-2">
+                            <label
+                                htmlFor={`edu-${num}-institute`}
+                                className="text-sm font-medium text-gray-700"
+                            >
+                                Institute Name
+                            </label>
+                            <button
+                                onClick={() => removeEducationCategory(num)}
+                                className="text-red-500 hover:text-red-700 text-[10px]"
+                                title="Remove this skill category"
+                            >
+                                <i className="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
                         <input
                             id={`edu-${num}-institute`}
                             value={edu.institute}
