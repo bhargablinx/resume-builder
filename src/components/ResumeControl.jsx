@@ -14,17 +14,18 @@ export const ResumeControl = () => {
 
     return (
         <div className="flex-1 flex flex-col items-center gap-[30px]">
-            <div className="flex justify-between w-[300px]">
-                <button className="bg-light-red hover:bg-light-red-hover text-light px-3 p-1 rounded-lg text-[14px] cursor-pointer">
-                    Clear Field
+            <div className="flex justify-center gap-4">
+                <button className="border border-red-400 text-red-500 hover:bg-red-50 px-4 py-1.5 rounded-md text-sm font-medium transition-all cursor-pointer">
+                    Clear Fields
                 </button>
-                <button className="bg-green-500 hover:bg-green-600 px-3 p-1 rounded-lg text-[14px] cursor-pointer">
+                <button className="bg-dark-red text-white hover:bg-red-700 px-4 py-1.5 rounded-md text-sm font-medium transition-all cursor-pointer">
                     Save
                 </button>
-                <button className="bg-blue-500 hover:bg-blue-600 text-light px-3 p-1 rounded-lg text-[14px] cursor-pointer">
+                <button className="border border-blue-400 text-blue-500 hover:bg-blue-50 px-4 py-1.5 rounded-md text-sm font-medium transition-all cursor-pointer">
                     Load Sample
                 </button>
             </div>
+
             <PersonalSection personalInfo={personalInfo} />
             <SkillSection skill={skill} />
             <ProjectSection projects={projects} />
