@@ -111,6 +111,15 @@ const resumeSlice = createSlice({
             state.education = [];
             console.log("Data cleared!");
         },
+        loadData: (state, action) => {
+            const payload = action.payload;
+            state.personalInfo = payload.personalInfo;
+            state.skill = payload.skill;
+            state.projects = payload.projects;
+            state.experience = payload.experience;
+            state.education = payload.education;
+            console.log("Loaded Data");
+        },
     },
 });
 
@@ -121,6 +130,7 @@ export const {
     changeExperience,
     changeEducation,
     clearFields,
+    loadData,
 } = resumeSlice.actions;
 
 export default resumeSlice.reducer;
