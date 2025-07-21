@@ -1,11 +1,14 @@
 import { NavBar } from "./components/NavBar";
 import { ResumeBuilder } from "./pages/ResumeBuilder";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
     return (
         <>
             <NavBar />
-            <ResumeBuilder />
+            <Routes>
+                <Route path="/resume" element={<ResumeBuilder />} />
+            </Routes>
         </>
     );
 }

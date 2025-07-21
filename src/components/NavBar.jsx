@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 export const NavBar = () => {
     const isLogin = true; // will be updated later after handling authentication
@@ -8,9 +9,9 @@ export const NavBar = () => {
         <nav className="bg-light px-6 py-3 shadow-md">
             <div className="flex justify-between items-center">
                 {/* Logo */}
-                <div className="text-2xl font-bold text-dark-red">
+                <NavLink to="/" className="text-2xl font-bold text-dark-red">
                     ResumeBuilder
-                </div>
+                </NavLink>
 
                 {/* Hamburger Icon */}
                 <div className="lg:hidden">
@@ -26,19 +27,22 @@ export const NavBar = () => {
                 {/* Desktop Links */}
                 <ul className="hidden lg:flex gap-6 text-dark font-medium">
                     <li>
-                        <a href="#templates" className="hover:text-dark-red">
+                        <NavLink
+                            to="/templates"
+                            className="hover:text-dark-red"
+                        >
                             Templates
-                        </a>
+                        </NavLink>
                     </li>
                     <li>
-                        <a href="#about" className="hover:text-dark-red">
+                        <NavLink to="/resume" className="hover:text-dark-red">
+                            Build Resume
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/about" className="hover:text-dark-red">
                             About
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#help" className="hover:text-dark-red">
-                            Help
-                        </a>
+                        </NavLink>
                     </li>
                 </ul>
 
@@ -59,15 +63,15 @@ export const NavBar = () => {
             {/* Mobile Menu */}
             {isOpen && (
                 <div className="mt-4 flex flex-col gap-4 lg:hidden text-dark font-medium">
-                    <a href="#templates" className="hover:text-dark-red">
+                    <NavLink to="/templates" className="hover:text-dark-red">
                         Templates
-                    </a>
-                    <a href="#about" className="hover:text-dark-red">
+                    </NavLink>
+                    <NavLink to="/resume" className="hover:text-dark-red">
+                        Build Resume
+                    </NavLink>
+                    <NavLink to="/about" className="hover:text-dark-red">
                         About
-                    </a>
-                    <a href="#help" className="hover:text-dark-red">
-                        Help
-                    </a>
+                    </NavLink>
                     {isLogin ? (
                         <button className="bg-light-red hover:bg-[rgb(200,50,50)] text-light px-4 py-2 rounded-md font-medium">
                             Logout
