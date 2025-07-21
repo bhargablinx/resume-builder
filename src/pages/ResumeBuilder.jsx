@@ -5,7 +5,7 @@ export const ResumeBuilder = () => {
     return (
         <section className="flex gap-2 m-4 justify-between">
             <ResumeControl />
-            <Resume />
+            <Resume templateId={24} />
         </section>
     );
 };

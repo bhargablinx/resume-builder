@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
+import { resumeTemplates } from "./TemplateOrder";
 
-export const Resume = () => {
+export const Resume = ({ templateId }) => {
     const { personalInfo, skill, projects, experience, education } =
         useSelector((state) => state.resume);
 
@@ -40,78 +41,101 @@ export const Resume = () => {
                 </ul>
             </header>
 
-            {/* SKILLS */}
-            <SectionHeading sectionName="SKILLS">
-                <ul className="text-[11px] space-y-0.5 leading-tight tracking-tight">
-                    {skill.map((obj) => (
-                        <li key={obj.categoryName}>
-                            <span className="font-semibold">
-                                {obj.categoryName}
-                            </span>
-                            : {obj.skills}
-                        </li>
-                    ))}
-                </ul>
-            </SectionHeading>
-
-            {/* PROJECTS */}
-            <SectionHeading sectionName="PROJECTS">
-                {projects.map((project, index) => (
-                    <ProjectSection
-                        key={index}
-                        projectName={project.projectName}
-                    >
-                        <div className="text-[11px] leading-tight tracking-tight">
-                            {project.description}
-                        </div>
-                        <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
-                            {project.bulletPoints.map((point, idx) => (
-                                <li key={idx}>{point}</li>
-                            ))}
-                        </ul>
-                    </ProjectSection>
-                ))}
-            </SectionHeading>
-
-            {/* EXPERIENCE */}
-            <SectionHeading sectionName="EXPERIENCE">
-                {experience.map((exp, index) => (
-                    <JobSection
-                        key={index}
-                        companyName={exp.companyName}
-                        startDate={exp.startDate}
-                        endDate={exp.endDate}
-                        jobRole={exp.jobRole}
-                    >
-                        <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
-                            {exp.bulletPoints.map((point, idx) => (
-                                <li key={idx}>{point}</li>
-                            ))}
-                        </ul>
-                    </JobSection>
-                ))}
-            </SectionHeading>
-
-            {/* EDUCATION */}
-            <SectionHeading sectionName="EDUCATION">
-                {education.map((edu, index) => (
-                    <EducationSection
-                        key={index}
-                        institute={edu.institute}
-                        degree={edu.degree}
-                        startDate={edu.startDate}
-                        endDate={edu.endDate}
-                    >
-                        <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
-                            <li>CGPA: {edu.cgpa}</li>
-                            <li>{edu.otherInfo}</li>
-                        </ul>
-                    </EducationSection>
-                ))}
-            </SectionHeading>
+            <Template
+                templateId={templateId}
+                skill={skill}
+                projects={projects}
+                experience={experience}
+                education={education}
+            />
         </div>
     );
 };
+
+function Template({ templateId, skill, projects, experience, education }) {
+    const template = resumeTemplates.find((t) => t.id === templateId);
+
+    const renderSection = (section) => {
+        switch (section) {
+            case "SKILLS":
+                return (
+                    <SectionHeading sectionName="SKILLS">
+                        <ul className="text-[11px] space-y-0.5 leading-tight tracking-tight">
+                            {skill.map((obj) => (
+                                <li key={obj.categoryName}>
+                                    <span className="font-semibold">
+                                        {obj.categoryName}
+                                    </span>
+                                    : {obj.skills}
+                                </li>
+                            ))}
+                        </ul>
+                    </SectionHeading>
+                );
+            case "PROJECTS":
+                return (
+                    <SectionHeading sectionName="PROJECTS">
+                        {projects.map((project, index) => (
+                            <ProjectSection
+                                key={index}
+                                projectName={project.projectName}
+                            >
+                                <div className="text-[11px] leading-tight tracking-tight">
+                                    {project.description}
+                                </div>
+                                <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
+                                    {project.bulletPoints.map((point, idx) => (
+                                        <li key={idx}>{point}</li>
+                                    ))}
+                                </ul>
+                            </ProjectSection>
+                        ))}
+                    </SectionHeading>
+                );
+            case "EXPERIENCE":
+                return (
+                    <SectionHeading sectionName="EXPERIENCE">
+                        {experience.map((exp, index) => (
+                            <JobSection
+                                key={index}
+                                companyName={exp.companyName}
+                                startDate={exp.startDate}
+                                endDate={exp.endDate}
+                                jobRole={exp.jobRole}
+                            >
+                                <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
+                                    {exp.bulletPoints.map((point, idx) => (
+                                        <li key={idx}>{point}</li>
+                                    ))}
+                                </ul>
+                            </JobSection>
+                        ))}
+                    </SectionHeading>
+                );
+            case "EDUCATION":
+                return (
+                    <SectionHeading sectionName="EDUCATION">
+                        {education.map((edu, index) => (
+                            <EducationSection
+                                key={index}
+                                institute={edu.institute}
+                                degree={edu.degree}
+                                startDate={edu.startDate}
+                                endDate={edu.endDate}
+                            >
+                                <ul className="list-disc list-inside space-y-0.5 text-[11px] ml-4 mt-1 leading-tight tracking-tight">
+                                    <li>CGPA: {edu.cgpa}</li>
+                                    <li>{edu.otherInfo}</li>
+                                </ul>
+                            </EducationSection>
+                        ))}
+                    </SectionHeading>
+                );
+        }
+    };
+
+    return <>{template.sectionOrder.map(renderSection)}</>;
+}
 
 // Shared Section Heading
 function SectionHeading({ children, sectionName }) {
