@@ -36,11 +36,32 @@ export const ResumeControl = ({ templateId }) => {
         projects: [
             {
                 projectName: "Demo Project 1",
-                description: "Résumé builder project...",
+                description:
+                    "A résumé generator built with React. Dynamic and fully editable résumé generator that allows users to:",
                 bulletPoints: [
-                    "Input and manage information",
-                    "Edit and resubmit data",
-                    "Live preview with state",
+                    "Input and manage general information, education, and work experience",
+                    "Edit and resubmit data with prefilled input fields for seamless updates",
+                    "View a live preview of the CV using conditional rendering and form state management",
+                ],
+            },
+            {
+                projectName: "Demo Project 2",
+                description:
+                    "A résumé generator built with React. Dynamic and fully editable résumé generator that allows users to:",
+                bulletPoints: [
+                    "Input and manage general information, education, and work experience",
+                    "Edit and resubmit data with prefilled input fields for seamless updates",
+                    "View a live preview of the CV using conditional rendering and form state management",
+                ],
+            },
+            {
+                projectName: "Demo Project 3",
+                description:
+                    "A résumé generator built with React. Dynamic and fully editable résumé generator that allows users to:",
+                bulletPoints: [
+                    "Input and manage general information, education, and work experience",
+                    "Edit and resubmit data with prefilled input fields for seamless updates",
+                    "View a live preview of the CV using conditional rendering and form state management",
                 ],
             },
         ],
@@ -51,16 +72,16 @@ export const ResumeControl = ({ templateId }) => {
                 endDate: "Sept, 2024",
                 jobRole: "Jr. Software Engineer",
                 bulletPoints: [
-                    "ReactJS, Redux, RTK Query, TS",
-                    "Migrated from CRA to Vite",
-                    "Improved Redux store structure",
+                    "Developed and managed web applications using ReactJS, Redux, RTK Query, and TypeScript.",
+                    "Migrated the front-end codebase from CRA to Vite, improving developer productivity and reducing build time.",
+                    "Streamlined Redux store structure, reducing load time by 25% and improving performance.",
                 ],
             },
         ],
         education: [
             {
-                institute: "CIT Kokrajhar",
-                degree: "B.Tech - CSE",
+                institute: "Central Institute of Technology, Kokrajhar",
+                degree: "Bachelor of Technology (B.Tech) - Computer Science",
                 startDate: "Aug, 2021",
                 endDate: "May, 2025",
                 cgpa: "8.5",
