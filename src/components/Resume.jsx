@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { resumeTemplates } from "./TemplateOrder";
+import { resumeTemplates } from "../utils/TemplateOrder";
 
 export const Resume = ({ templateId }) => {
     const { personalInfo, skill, projects, experience, education } =
