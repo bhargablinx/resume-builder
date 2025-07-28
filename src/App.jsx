@@ -3,12 +3,14 @@ import { ResumeBuilder } from "./pages/ResumeBuilder";
 import { Routes, Route, Navigate } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import TemplatesPage from "./pages/TemplatesPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
     return (
         <>
             <NavBar />
             <Routes>
+                <Route path="/" element={<HomePage />} />
                 <Route path="/resume">
                     <Route
                         index
