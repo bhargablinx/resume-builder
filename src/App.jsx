@@ -1,6 +1,6 @@
 import { NavBar } from "./components/NavBar";
 import { ResumeBuilder } from "./pages/ResumeBuilder";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import TemplatesPage from "./pages/TemplatesPage";
 
@@ -10,6 +10,10 @@ function App() {
             <NavBar />
             <Routes>
                 <Route path="/resume">
+                    <Route
+                        index
+                        element={<Navigate to="/resume/1" replace />}
+                    />
                     <Route path=":id" element={<ResumeBuilder />} />
                 </Route>
                 <Route path="/templates" element={<TemplatesPage />} />
