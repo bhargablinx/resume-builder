@@ -18,7 +18,7 @@ function TemplatesPage() {
             <h2 className="text-xl font-bold mb-6 text-dark-red text-center">
                 Choose a Resume Template
             </h2>
-            <div className="flex gap-5 flex-wrap mx-[300px]">
+            <div className="flex gap-5 justify-center flex-wrap mx-[200px]">
                 {resumeTemplates.map((template) => (
                     <TemplatePreview
                         key={template.id}

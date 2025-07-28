@@ -1,17 +1,23 @@
 export function TemplatePreview({ id, sectionOrder, onSelect }) {
     return (
         <div
-            className="border rounded p-2 cursor-pointer hover:shadow-md transition-all w-[200px]"
+            className="w-[240px] border border-dark-red rounded-lg hover:shadow-md transition-all bg-white cursor-pointer"
             onClick={() => onSelect(id)}
         >
-            <h4 className="font-semibold text-sm mb-1 text-center">
-                Template {id}
-            </h4>
-            <div className="text-xs flex flex-col items-start gap-1">
+            <div className="border-b border-gray-200 px-4 py-2">
+                <h4 className="text-center text-base font-semibold text-gray-800">
+                    Template {id}
+                </h4>
+            </div>
+
+            <div className="p-4 space-y-2">
                 {sectionOrder.map((section, idx) => (
-                    <span key={idx} className="bg-gray-100 px-2 py-0.5 rounded">
+                    <div
+                        key={idx}
+                        className="text-xs bg-gray-100 text-gray-700 px-3 py-1 rounded-md"
+                    >
                         {section}
-                    </span>
+                    </div>
                 ))}
             </div>
         </div>
