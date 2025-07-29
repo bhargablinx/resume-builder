@@ -26,7 +26,7 @@ export default function HomePage() {
 
                     <div className="lg:w-1/2 mb-10 lg:mb-0">
                         <img
-                            src="public/undraw_chat-with-ai_ir62.svg"
+                            src="/undraw_chat-with-ai_ir62.svg"
                             alt="Resume Builder Illustration"
                             className="w-full max-w-md mx-auto"
                         />
