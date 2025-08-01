@@ -6,6 +6,20 @@ The Resume Builder is a web-based application that allows users to create, previ
 
 ---
 
+## Preview
+
+### Resume Building Page
+
+![](./preview/building-page.png)
+
+### Home Page
+
+![](./preview/home-page.png)
+
+### Template Page
+
+![](./preview/template-page.png)
+
 ## Features
 
 -   🔧 Live resume editing with auto-update preview
